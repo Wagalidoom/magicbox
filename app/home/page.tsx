@@ -16,7 +16,7 @@ export default function Page() {
   const [selected, setSelected] = useState(people[0]);
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex flex-col bg-slate-600 h-48">
       <div className="w-48">
         <p>Client :</p>
         <Listbox value={selected} onChange={setSelected}>
