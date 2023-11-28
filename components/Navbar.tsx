@@ -36,7 +36,7 @@ const Navbar = () => {
             height={100}
           />
         </div>
-        <div className="space-x-4 font-sans font-black text-foreground-light dark:text-neutral-50">
+        <div className="space-x-4 font-sans font-black text-foreground-light dark:text-foreground-dark">
           <Link href="/home" passHref>
             <span className="hover:text-gray-500 cursor-pointer">ACCUEIL</span>
           </Link>

@@ -17,15 +17,15 @@ export const Login = ({ isAuthModalOpen, onClose }: LoginProps) => {
       event.target instanceof Node &&
       !componentRef.current.contains(event.target)
     ) {
-        onClose();
+      onClose();
     }
   };
 
   useEffect(() => {
     const listener = (event: MouseEvent) => handleClickOutside(event);
-  
+
     document.addEventListener("mousedown", listener);
-  
+
     return () => {
       document.removeEventListener("mousedown", listener);
     };
@@ -52,63 +52,34 @@ export const Login = ({ isAuthModalOpen, onClose }: LoginProps) => {
 
   return (
     <div className="flex items-center justify-center min-w-full min-h-screen fixed z-10 bg-black/25">
-      <div className="p-6 shadow-lg flex flex-col w-96 rounded-md bg-background-light" ref={componentRef}>
-        <div
-          className="flex justify-between"
-        >
-          Login
-          <XMarkIcon className="h-6 w-6 text-primary-light dark:text-primary-dark" onClick={onClose} />
+      <div
+        className="p-12 max-w-lg w-full shadow-lg flex flex-col rounded-md bg-background-light dark:bg-background-dark text-foreground-light dark:text-foreground-dark"
+        ref={componentRef}
+      >
+        <div className="flex justify-end">
+          <XMarkIcon
+            className="h-6 w-6 text-primary-light dark:text-primary-dark"
+            onClick={onClose}
+          />
         </div>
-        <div
-          style={{
-            display: "flex",
-            padding: "18px 15px",
-            flexDirection: "column",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          Set the price and sell your NFT!
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              marginTop: "30px",
-              fontWeight: "bold",
-              height: "35px",
-              border: "2px rgb(32 34 45) solid",
-              borderRadius: ".5em",
-              backgroundColor: "rgb(32 34 45)",
-              overflow: "hidden",
-            }}
-          >
-            <div></div>
-            <input
-              id="filled-hidden-label-small"
-              onChange={handleTextFieldChange}
-              value={0}
-            />
+        Email address
+        <input type="email" className="px-3 py-1.5 rounded-md ring-1 ring-inset ring-gray-300 shadow-sm"
+          onChange={handleTextFieldChange}
+          value={userName}
+        />
+        Password
+        <input className="px-3 py-1.5 rounded-md ring-1 ring-inset ring-gray-300 shadow-sm"
+          onChange={handleTextFieldChange}
+          value={password}
+        />
+        <div className="flex justify-between">
+          <div>
+            <input type="checkbox" />
+            Remember me
           </div>
+          Forgot password?
         </div>
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <button
-            style={{
-              marginTop: "10px",
-              width: "190px",
-              height: "40px",
-              backgroundColor: "rgb(138 180 209)",
-            }}
-          >
-            <p
-              style={{
-                textTransform: "none",
-                fontSize: "1rem",
-              }}
-            >
-              Proceed to listing
-            </p>
-          </button>
-        </div>
+        <button className="w-full bg-primary-light dark:bg-primary-dark">Sign in</button>
       </div>
     </div>
   );
