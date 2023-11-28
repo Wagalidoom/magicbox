@@ -10,7 +10,22 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        beige: "#f0eae3",
+        // Light Mode
+        'primary-light': '#FFA726', // Orange
+        'secondary-light': '#29B6F6', // Light Blue
+        'background-light': '#FAFAFA', // Off White
+        'foreground-light': '#002839', // Dark Grey
+        'accent-light': '#FFEE58', // Yellow
+        'tertiary-light': '#F0EAE3', // Beige
+
+
+        // Dark Mode
+        'primary-dark': '#FFB74D', // Bright Orange
+        'secondary-dark': '#4FC3F7', // Brighter Blue
+        'background-dark': '#121212', // Dark Grey
+        'foreground-dark': '#E0E0E0', // Light Grey
+        'accent-dark': '#FFFF72', // Bright Yellow
+        'tertiary-dark': '#2E2E2E', // Charcoal
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

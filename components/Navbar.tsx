@@ -14,7 +14,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="p-4 flex justify-between items-center bg-beige dark:bg-indigo-950">
+    <nav className="p-4 flex justify-between items-center bg-tertiary-light dark:bg-tertiary-dark">
       <div className="flex items-center space-x-4">
         <Image
           src="/magic_box_logo.png"
@@ -30,7 +30,7 @@ const Navbar = () => {
           height={100}
         />
       </div>
-      <div className="space-x-4 font-sans font-black">
+      <div className="space-x-4 font-sans font-black text-foreground-light dark:text-neutral-50">
         <Link href="/home" passHref>
           <span className="hover:text-gray-500 cursor-pointer">ACCUEIL</span>
         </Link>
@@ -54,14 +54,13 @@ const Navbar = () => {
       <div>
         <button className="p-2 rounded text-green-600 bg-white">LOGIN</button>
       </div>
-      <button
-        className="p-2 rounded text-green-600 bg-white"
+      <button className="p-1 rounded-full border-2 border-primary-light dark:border-primary-dark"
         onClick={toggleTheme}
       >
         {theme === "light" ? (
-          <SunIcon className="h-6 w-6 text-blue-500" />
+          <SunIcon className="h-6 w-6 text-primary-light" />
         ) : (
-          <MoonIcon className="h-6 w-6 text-blue-500" />
+          <MoonIcon className="h-6 w-6 text-primary-dark" />
         )}
       </button>
     </nav>
