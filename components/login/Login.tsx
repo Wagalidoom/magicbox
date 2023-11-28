@@ -1,27 +1,39 @@
 import { useState, useRef, useEffect } from "react";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 
-export const Login = () => {
+type LoginProps = {
+  isAuthModalOpen: boolean;
+  onClose: () => void;
+};
+
+export const Login = ({ isAuthModalOpen, onClose }: LoginProps) => {
   const [userName, setUsername] = useState("");
   const [password, setUsesetPassword] = useState("");
   const componentRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
   const handleClickOutside = (event: MouseEvent) => {
-    if (componentRef.current && event.target instanceof Node && !componentRef.current.contains(event.target)) {
+    if (
+      componentRef.current &&
+      event.target instanceof Node &&
+      !componentRef.current.contains(event.target)
+    ) {
+        onClose();
     }
   };
 
-  const handleClose = () => {};
+  useEffect(() => {
+    const listener = (event: MouseEvent) => handleClickOutside(event);
+  
+    document.addEventListener("mousedown", listener);
+  
+    return () => {
+      document.removeEventListener("mousedown", listener);
+    };
+  }, [handleClickOutside]);
 
-  const handleTextFieldChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleTextFieldChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const userInput = event.target.value;
 
     // Supprime les caractères non numériques ou non décimaux
@@ -36,18 +48,16 @@ export const Login = () => {
     }
   };
 
+  if (!isAuthModalOpen) return null;
+
   return (
-    <div className="flex min-w-screen min-h-screen fixed z-10 bg-black/25">
-      <div className="flex" ref={componentRef}>
+    <div className="flex items-center justify-center min-w-full min-h-screen fixed z-10 bg-black/25">
+      <div className="p-6 shadow-lg flex flex-col w-96 rounded-md bg-background-light" ref={componentRef}>
         <div
-          className="contractContainerRow"
-          style={{
-            padding: "15px 0px",
-            justifyContent: "space-between",
-          }}
+          className="flex justify-between"
         >
           Login
-          <XMarkIcon className="h-6 w-6 text-primary-light dark:text-primary-dark" />
+          <XMarkIcon className="h-6 w-6 text-primary-light dark:text-primary-dark" onClick={onClose} />
         </div>
         <div
           style={{
