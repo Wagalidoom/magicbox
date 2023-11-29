@@ -27,11 +27,6 @@ const config: Config = {
         'accent-dark': '#FFFF72', // Bright Yellow
         'tertiary-dark': '#2E2E2E', // Charcoal
       },
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-      },
       fontFamily: {
         sans: ["Montserrat", "ui-sans-serif", "system-ui"],
       },

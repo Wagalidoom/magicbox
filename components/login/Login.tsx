@@ -7,8 +7,6 @@ type LoginProps = {
 };
 
 export const Login = ({ isAuthModalOpen, onClose }: LoginProps) => {
-  const [userName, setUsername] = useState("");
-  const [password, setUsesetPassword] = useState("");
   const componentRef = useRef<HTMLDivElement>(null);
 
   const handleClickOutside = (event: MouseEvent) => {
@@ -31,23 +29,6 @@ export const Login = ({ isAuthModalOpen, onClose }: LoginProps) => {
     };
   }, [handleClickOutside]);
 
-  const handleTextFieldChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const userInput = event.target.value;
-
-    // Supprime les caractères non numériques ou non décimaux
-    let cleanedInput = userInput.replace(/[^0-9\.]/g, "");
-
-    // Vérifie s'il y a plus de 4 chiffres après la virgule
-    if (cleanedInput.includes(".")) {
-      const decimalPosition = cleanedInput.indexOf(".");
-      if (cleanedInput.length - decimalPosition - 1 > 4) {
-        cleanedInput = cleanedInput.slice(0, decimalPosition + 5);
-      }
-    }
-  };
-
   if (!isAuthModalOpen) return null;
 
   return (
@@ -63,23 +44,19 @@ export const Login = ({ isAuthModalOpen, onClose }: LoginProps) => {
           />
         </div>
         Email address
-        <input type="email" className="px-3 py-1.5 rounded-md ring-1 ring-inset ring-gray-300 shadow-sm"
-          onChange={handleTextFieldChange}
-          value={userName}
+        <input type="email" className="px-3 py-1.5 rounded-md ring-1 ring-inset ring-gray-300 shadow-sm mb-5"
         />
         Password
-        <input className="px-3 py-1.5 rounded-md ring-1 ring-inset ring-gray-300 shadow-sm"
-          onChange={handleTextFieldChange}
-          value={password}
+        <input className="px-3 py-1.5 rounded-md ring-1 ring-inset ring-gray-300 shadow-sm mb-5"
         />
-        <div className="flex justify-between">
+        <div className="flex justify-between mb-5">
           <div>
             <input type="checkbox" />
             Remember me
           </div>
           Forgot password?
         </div>
-        <button className="w-full bg-primary-light dark:bg-primary-dark">Sign in</button>
+        <button className="w-full rounded-md px-3 py-1.5 bg-primary-light dark:bg-primary-dark">Sign in</button>
       </div>
     </div>
   );
