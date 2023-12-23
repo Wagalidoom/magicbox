@@ -5,5 +5,5 @@ export const {
   handlers: { GET, POST },
   auth,
 } = NextAuth({
-  providers: [Google],
+  providers: [Google({ clientId: process.env.NEXT_PUBLIC_GOOGLE_ID, clientSecret: process.env.NEXT_PUBLIC_GOOGLE_SECRET })],
 })
