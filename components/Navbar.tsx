@@ -19,7 +19,7 @@ const Navbar = () => {
 
   return (
     <>
-    <Login isAuthModalOpen={isAuthModalOpen} onClose={toggleAuthModal}/>
+      <Login isAuthModalOpen={isAuthModalOpen} onClose={toggleAuthModal} />
       <nav className="p-4 flex justify-between items-center bg-tertiary-light dark:bg-tertiary-dark">
         <div className="flex items-center space-x-4">
           <Image
