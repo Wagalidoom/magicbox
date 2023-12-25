@@ -1,25 +1,15 @@
-"use client";
-
+import { auth } from "../auth";
 import Image from "next/image";
 import Link from "next/link";
-import { useContext, useState } from "react";
-import { SunIcon, MoonIcon } from "@heroicons/react/24/solid";
-import { ThemeContext } from "@/contexts/ThemeContext";
-import { Login } from "./login/Login";
+import { LoginButton } from "./LoginButton";
+import { Session } from "./Session";
+import ThemeButton from "./themeButton";
 
-const Navbar = () => {
-  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
-  const { theme, setTheme } = useContext(ThemeContext);
-
-  const toggleTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
-  };
-
-  const toggleAuthModal = () => setIsAuthModalOpen(!isAuthModalOpen);
+const Navbar = async () => {
+  const session = await auth();
 
   return (
     <>
-      <Login isAuthModalOpen={isAuthModalOpen} onClose={toggleAuthModal} />
       <nav className="p-4 flex justify-between items-center bg-tertiary-light dark:bg-tertiary-dark">
         <div className="flex items-center space-x-4">
           <Image
@@ -57,24 +47,8 @@ const Navbar = () => {
             </span>
           </Link>
         </div>
-        <div>
-          <button
-            className="p-2 rounded text-green-600 bg-white"
-            onClick={toggleAuthModal}
-          >
-            LOGIN
-          </button>
-        </div>
-        <button
-          className="p-1 rounded-full border-2 border-primary-light dark:border-primary-dark"
-          onClick={toggleTheme}
-        >
-          {theme === "light" ? (
-            <SunIcon className="h-6 w-6 text-primary-light" />
-          ) : (
-            <MoonIcon className="h-6 w-6 text-primary-dark" />
-          )}
-        </button>
+        {session ? <Session /> : <LoginButton />}
+        <ThemeButton />
       </nav>
     </>
   );
